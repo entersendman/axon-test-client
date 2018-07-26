@@ -85,8 +85,7 @@ class Form extends Component {
 						<InputLabel htmlFor="name-simple">Date of birth</InputLabel>
 						<Input  value={this.state.dob}
 						        onChange={this.handleDob}
-						        placeholder="dd.mm.yyyy"
-						        type="number"/>
+						        placeholder="dd.mm.yyyy"/>
 					</FormControl>
 					<FormControl className={classes.formControl}>
 						<InputLabel htmlFor="name-simple">Location</InputLabel>
