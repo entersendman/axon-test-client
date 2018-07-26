@@ -36,12 +36,16 @@ const styles = theme => ({
 		'&:nth-of-type(odd)': {
 			backgroundColor: theme.palette.background.default,
 		},
+		textAlign: 'left'
 	},
 	button: {
 		margin: theme.spacing.unit,
 	},
 	input: {
 		width: '100%'
+	},
+	head: {
+		textAlign: 'left'
 	}
 });
 const listUser = props => {
@@ -51,18 +55,21 @@ const listUser = props => {
 			<Table className={classes.table} title="Table">
 			<TableHead>
 				<TableRow>
-					<CustomTableCell numeric>First Name</CustomTableCell>
-					<CustomTableCell numeric>Last Name</CustomTableCell>
-					<CustomTableCell numeric>DOB</CustomTableCell>
-					<CustomTableCell numeric>Location</CustomTableCell>
-					<CustomTableCell numeric>Actions</CustomTableCell>
+					<CustomTableCell className={classes.head} numeric>First Name</CustomTableCell>
+					<CustomTableCell className={classes.head} numeric>Last Name</CustomTableCell>
+					<CustomTableCell className={classes.head} numeric>DOB</CustomTableCell>
+					<CustomTableCell className={classes.head} numeric>Location</CustomTableCell>
+					<CustomTableCell className={classes.head} numeric>Actions</CustomTableCell>
 				</TableRow>
 			</TableHead>
 			<TableBody>
 				{props.users.map(user => {
 					return (
-						<TableRow className={classes.row} key={user.id} >
-							<CustomTableCell component="th" scope="row">
+						<TableRow className={classes.row}
+						          key={user.id} >
+							<CustomTableCell component="th"
+							                 scope="row"
+							                 className={classes.head}>
 								<Input id='firstName'
 								       value={user.first_name}
 								       className={classes.input}
@@ -70,28 +77,32 @@ const listUser = props => {
 								       onChange={(e) => {props.changeInputHandler(e.target, user.id)}}
 								       readOnly={!user.editable}/>
 							</CustomTableCell>
-							<CustomTableCell numeric>
+							<CustomTableCell numeric
+							                 className={classes.head}>
 								 <Input id='lastName'
 								        value={user.last_name}
 								        disableUnderline={!user.editable}
 								        onChange={(e) => {props.changeInputHandler(e.target, user.id)}}
-								        readOnly={!user.editable}/>
+								        readOnly={!user.editable}className={classes.head}/>
 							</CustomTableCell>
-							<CustomTableCell numeric>
+							<CustomTableCell className={classes.head}
+							                 numeric>
 								<Input id='dob'
 								       value={user.dob}
 								       disableUnderline={!user.editable}
 								       onChange={(e) => {props.changeInputHandler(e.target, user.id)}}
 								       readOnly={!user.editable}/>
 							</CustomTableCell>
-							<CustomTableCell numeric>
+							<CustomTableCell className={classes.head}
+							                 numeric>
 								<Input id='location'
 								       value={user.location}
 								       disableUnderline={!user.editable}
 								       onChange={(e) => {props.changeInputHandler(e.target, user.id)}}
 								       readOnly={!user.editable}/>
 							</CustomTableCell>
-							<CustomTableCell numeric>
+							<CustomTableCell className={classes.head}
+							                 numeric>
 								{
 									user.editable ? <Button variant="fab"
 									                        mini color="primary"
