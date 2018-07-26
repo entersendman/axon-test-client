@@ -9,19 +9,25 @@ const Summary = props => {
 	longestNames.sort(function (a ,b) {
 		return (b.first_name + b.last_name).length - (a.first_name + a.last_name).length
 	})
-	const usersAge = []
-	for (let i = 0;i < props.users.length;i++){
-		usersAge.push(parseInt(moment(props.users[i].dob, "DD.MM.YYYY").fromNow()))
-	}
-	usersAge.sort(function (a, b) {
-		return b - a
-	})
-	let counter = 3
-	let sum = 0
-	while(counter !== 0){
-		sum += Math.max(...usersAge)
-		usersAge.shift()
-		counter--
+	var sum = 0
+	if(props.users.length > 2){
+		const usersAge = []
+		for (let i = 0;i < props.users.length;i++){
+			usersAge.push(parseInt(moment(props.users[i].dob, "DD.MM.YYYY").fromNow()))
+		}
+		usersAge.sort(function (a, b) {
+			return b - a
+		})
+		let counter = 3
+		while(counter !== 0){
+			sum += Math.max(...usersAge)
+			usersAge.shift()
+			counter--
+		}
+	} else {
+		for(let i = 0; i < props.users.length; i++){
+			sum += parseInt(moment(props.users[i].dob, "DD.MM.YYYY").fromNow())
+		}
 	}
 		return(
 			<div>
